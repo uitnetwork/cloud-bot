@@ -1,0 +1,4 @@
+allprojects {
+    group = 'com.uitnetwork'
+    version = '1.0'
+}

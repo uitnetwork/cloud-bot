@@ -1,1 +1,3 @@
 rootProject.name = 'cloud-bot'
+
+include 'cloud-bot-lamda'
