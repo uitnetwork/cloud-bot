@@ -55,14 +55,18 @@ package:
   artifact: build/distributions/cloud-bot-lamda-1.0.zip
 
 functions:
-  hello:
+  overview:
     handler: com.uitnetwork.bot.handler.Ec2StateOverviewHandler
     events:
       - http: get hello
-  hello2:
-      handler: com.uitnetwork.bot.handler.Ec2StateOverviewHandler
+  start:
+      handler: com.uitnetwork.bot.handler.Ec2StartRequestHandler
       events:
         - http: get hello1
+  stop:
+        handler: com.uitnetwork.bot.handler.Ec2StopRequestHandler
+        events:
+          - http: get hello2
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
