@@ -52,7 +52,7 @@ provider:
 
 # you can add packaging information here
 package:
-  artifact: build/libs/cloud-bot-lamda-1.0-all.jar
+  artifact: build/distributions/cloud-bot-lamda-1.0.zip
 
 functions:
   hello:

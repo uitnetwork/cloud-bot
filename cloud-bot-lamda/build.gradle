@@ -12,7 +12,7 @@ tasks.withType(JavaCompile) {
 
 buildscript {
     ext {
-        kotlinVersion = '1.1.61'
+        kotlinVersion = '1.2.10'
         springVersion = '5.0.2.RELEASE'
     }
     repositories {
@@ -23,16 +23,12 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
         classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
         classpath "io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE"
-        classpath "com.github.jengelman.gradle.plugins:shadow:2.0.1"
-        classpath "de.sebastianboegl.gradle.plugins:shadow-log4j-transformer:2.1.1"
     }
 }
 
 apply plugin: 'kotlin'
 apply plugin: 'kotlin-spring'
 apply plugin: "io.spring.dependency-management"
-apply plugin: 'com.github.johnrengelman.shadow'
-apply plugin: "de.sebastianboegl.shadow.transformer.log4j"
 
 repositories {
     maven { url "http://repo.maven.apache.org/maven2" }
@@ -62,6 +58,14 @@ dependencies {
     compile "org.springframework:spring-context:${springVersion}"
 }
 
-task deploy(type: Exec, dependsOn: 'shadowJar') {
+task buildZip(type: Zip) {
+    from compileKotlin
+    from processResources
+    into('lib') {
+        from configurations.runtime
+    }
+}
+
+task deploy(type: Exec, dependsOn: 'buildZip') {
     commandLine 'serverless', 'deploy'
 }
