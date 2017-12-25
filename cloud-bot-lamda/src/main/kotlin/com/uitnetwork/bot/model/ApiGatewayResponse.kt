@@ -1,4 +1,4 @@
-package com.uitnetwork.lamda
+package com.uitnetwork.bot.model
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import java.util.*

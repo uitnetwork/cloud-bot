@@ -56,11 +56,11 @@ package:
 
 functions:
   hello:
-    handler: com.uitnetwork.lamda.Handler
+    handler: com.uitnetwork.bot.handler.Ec2StateOverviewHandler
     events:
       - http: get hello
   hello2:
-      handler: com.uitnetwork.lamda.Handler
+      handler: com.uitnetwork.bot.handler.Ec2StateOverviewHandler
       events:
         - http: get hello1
 

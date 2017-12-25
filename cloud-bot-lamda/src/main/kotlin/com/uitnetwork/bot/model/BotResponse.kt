@@ -1,4 +1,4 @@
-package com.uitnetwork.lamda
+package com.uitnetwork.bot.model
 
 import java.time.LocalDateTime
 
