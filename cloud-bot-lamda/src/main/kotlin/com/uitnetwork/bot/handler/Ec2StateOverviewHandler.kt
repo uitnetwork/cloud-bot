@@ -3,10 +3,9 @@ package com.uitnetwork.bot.handler
 import com.amazonaws.services.lambda.runtime.Context
 import com.uitnetwork.bot.config.CloutBotConfig
 import com.uitnetwork.bot.model.ApiGatewayResponse
-import com.uitnetwork.bot.model.BotResponse
+import com.uitnetwork.bot.model.FulfillmentResponse
 import com.uitnetwork.bot.service.Ec2Service
 import org.apache.logging.log4j.LogManager
-import java.time.LocalDateTime.now
 
 class Ec2StateOverviewHandler : AbstractSpringAwareHandler<CloutBotConfig>() {
     companion object {
@@ -19,8 +18,7 @@ class Ec2StateOverviewHandler : AbstractSpringAwareHandler<CloutBotConfig>() {
         val ec2Service = applicationContext.getBean(Ec2Service::class.java)
         val allEc2Info = ec2Service.getAllEc2Info()
 
-
-        val response = BotResponse(allEc2Info.joinToString { it.toString() }, now())
-        return ApiGatewayResponse.ofResponse(response)
+        val response = FulfillmentResponse(allEc2Info.joinToString { it.toString() })
+        return ApiGatewayResponse.fromFulfillmentResponse(response)
     }
 }

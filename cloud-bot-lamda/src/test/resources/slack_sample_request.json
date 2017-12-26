@@ -1,0 +1,56 @@
+{
+  "originalRequest": {
+    "source": "slack_testbot",
+    "data": {
+      "event_ts": "1514269958.000113",
+      "channel": "D8L3P6MML",
+      "text": "ec2 overview",
+      "type": "message",
+      "user": "testUser",
+      "ts": "1514269958.000113"
+    }
+  },
+  "id": "cc9633ee-1685-4041-b267-d488b04a8ca5",
+  "timestamp": "2017-12-26T06:32:39.324Z",
+  "lang": "en",
+  "result": {
+    "source": "agent",
+    "resolvedQuery": "ec2 overview",
+    "speech": "",
+    "action": "Test",
+    "actionIncomplete": false,
+    "parameters": {},
+    "contexts": [
+      {
+        "name": "generic",
+        "parameters": {
+          "slack_user_id": "testUser",
+          "slack_channel": "D8L3P6MML"
+        },
+        "lifespan": 4
+      }
+    ],
+    "metadata": {
+      "intentId": "3a86e613-8154-4a90-84f6-c192c7acc4f0",
+      "webhookUsed": "true",
+      "webhookForSlotFillingUsed": "false",
+      "intentName": "Ec2 Overview"
+    },
+    "fulfillment": {
+      "speech": "Ok",
+      "messages": [
+        {
+          "type": 0,
+          "speech": "Ok"
+        }
+      ]
+    },
+    "score": 1
+  },
+  "status": {
+    "code": 200,
+    "errorType": "success",
+    "webhookTimedOut": false
+  },
+  "sessionId": "209dd85a-eab9-406c-8007-758e2f63c079"
+}

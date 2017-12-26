@@ -25,6 +25,9 @@ provider:
   profile: sls-admin
   memorySize: 512
   timeout: 60
+  apiKeys:
+    - chat-bot
+
 
 # you can overwrite defaults here
 #  stage: dev
@@ -58,15 +61,24 @@ functions:
   overview:
     handler: com.uitnetwork.bot.handler.Ec2StateOverviewHandler
     events:
-      - http: get hello
+      - http:
+          path: ec2-overview
+          method: GET
+          private: true
   start:
       handler: com.uitnetwork.bot.handler.Ec2StartRequestHandler
       events:
-        - http: get hello1
+        - http:
+            path: ec2-start
+            method: POST
+            private: true
   stop:
         handler: com.uitnetwork.bot.handler.Ec2StopRequestHandler
         events:
-          - http: get hello2
+          - http:
+              path: ec2-stop
+              method: POST
+              private: true
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

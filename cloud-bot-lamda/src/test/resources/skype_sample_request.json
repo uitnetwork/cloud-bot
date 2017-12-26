@@ -1,0 +1,78 @@
+{
+  "originalRequest": {
+    "source": "skype",
+    "data": {
+      "agent": "botbuilder",
+      "attachments": [],
+      "address": {
+        "bot": {
+          "name": "hello-world",
+          "id": "28:18979272-41f1-4cf7-baad-a6350a34fc62"
+        },
+        "serviceUrl": "https://smba.trafficmanager.net/apis/",
+        "id": "1514201578802",
+        "user": {
+          "name": "Doan Ninh",
+          "id": "testId"
+        },
+        "channelId": "skype",
+        "conversation": {
+          "id": "testId"
+        }
+      },
+      "entities": [
+        {
+          "country": "US",
+          "locale": "en-US",
+          "type": "clientInfo",
+          "platform": "Mac"
+        }
+      ],
+      "sourceEvent": {
+        "text": "ec2 overview"
+      },
+      "text": "ec2 overview",
+      "source": "skype",
+      "type": "message",
+      "user": {
+        "name": "Doan Ninh",
+        "id": "testId"
+      },
+      "timestamp": "2017-12-25T11:32:58.874Z"
+    }
+  },
+  "id": "5d45c492-f4f3-475e-b9f6-eea8d894b8af",
+  "timestamp": "2017-12-25T11:32:59.387Z",
+  "lang": "en",
+  "result": {
+    "source": "agent",
+    "resolvedQuery": "ec2 overview",
+    "speech": "",
+    "action": "Test",
+    "actionIncomplete": false,
+    "parameters": {},
+    "contexts": [],
+    "metadata": {
+      "intentId": "3a86e613-8154-4a90-84f6-c192c7acc4f0",
+      "webhookUsed": "true",
+      "webhookForSlotFillingUsed": "false",
+      "intentName": "Ec2 Overview"
+    },
+    "fulfillment": {
+      "speech": "Ok",
+      "messages": [
+        {
+          "type": 0,
+          "speech": "Ok"
+        }
+      ]
+    },
+    "score": 1
+  },
+  "status": {
+    "code": 200,
+    "errorType": "success",
+    "webhookTimedOut": false
+  },
+  "sessionId": "5400bee0-4552-428a-a407-a6054beed54d"
+}

@@ -10,7 +10,7 @@ class ApiGatewayResponse(
 ) {
     companion object {
         private var objectMapper: ObjectMapper = ObjectMapper()
-        fun ofResponse(response: Response): ApiGatewayResponse {
+        fun fromFulfillmentResponse(response: FulfillmentResponse): ApiGatewayResponse {
             return ApiGatewayResponse(body = objectMapper.writeValueAsString(response))
         }
     }
