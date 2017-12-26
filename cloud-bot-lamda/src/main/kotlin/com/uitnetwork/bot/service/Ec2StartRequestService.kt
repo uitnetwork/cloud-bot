@@ -2,11 +2,12 @@ package com.uitnetwork.bot.service
 
 import com.uitnetwork.bot.model.FulfillmentRequest
 import com.uitnetwork.bot.model.FulfillmentResponse
+import com.uitnetwork.bot.service.Ec2StopRequestService.Companion.PARAM_EC2_ID
 import org.apache.logging.log4j.LogManager
 import org.springframework.stereotype.Service
 
 @Service
-class Ec2StartRequestService(val ec2Service: Ec2Service) : AbstractRequestService() {
+class Ec2StartRequestService(private val ec2Service: Ec2Service, private val permissionService: PermissionService) : AbstractRequestService() {
     companion object {
         private val logger = LogManager.getLogger(Ec2StartRequestService::class.java)
 
@@ -18,10 +19,19 @@ class Ec2StartRequestService(val ec2Service: Ec2Service) : AbstractRequestServic
     }
 
     override fun process(fulfillmentRequest: FulfillmentRequest): FulfillmentResponse {
-        val id = "i-050fd2b4cd3f386b2"
+        if (!permissionService.hasPermissionToExecute(fulfillmentRequest.userId, fulfillmentRequest.source, fulfillmentRequest.action)) {
+            logger.info("Sorry. You don't have permission.")
+            return FulfillmentResponse("Sorry. You don't have permission.")
+        }
 
-        ec2Service.startEc2Instance(id)
+        val ec2Id = fulfillmentRequest.params[PARAM_EC2_ID]
+        logger.info("Starting $ec2Id")
+        if (ec2Id == null) {
+            return FulfillmentResponse("Please specify the id of the instance.")
+        }
 
-        return FulfillmentResponse("Starting $id")
+        ec2Service.startEc2Instance(ec2Id)
+
+        return FulfillmentResponse("Starting $ec2Id")
     }
 }

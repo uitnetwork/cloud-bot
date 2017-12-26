@@ -12,6 +12,7 @@ class Ec2StopRequestService(val ec2Service: Ec2Service, val permissionService: P
         private val logger = LogManager.getLogger(Ec2StopRequestService::class.java)
 
         const val ACTION_EC2_STOP = "EC2_STOP"
+        const val PARAM_EC2_ID = "ec2Id"
     }
 
     override fun getProcessableAction(): String {
@@ -25,18 +26,23 @@ class Ec2StopRequestService(val ec2Service: Ec2Service, val permissionService: P
             return FulfillmentResponse("Sorry. You don't have permission.")
         }
 
-        logger.info("Stopping...")
-
-        val name = "test123"
-
-        val ec2InfoByInstanceName = ec2Service.getEc2InfoByInstanceName(name)
-
-        if (ec2InfoByInstanceName.isEmpty()) {
-            return FulfillmentResponse("There is no Ec2 instances which has name: $name")
+        val ec2Id = fulfillmentRequest.params[PARAM_EC2_ID]
+        logger.info("Stopping $ec2Id")
+        if (ec2Id == null) {
+            return FulfillmentResponse("Please specify the id of the instance.")
         }
-        val ec2Ids = ec2InfoByInstanceName.map { it.id }
-        ec2Service.stopEc2Instance(*ec2Ids.toTypedArray())
 
-        return FulfillmentResponse("Stopping $name")
+//        val name = "test123"
+//
+//        val ec2InfoByInstanceName = ec2Service.getEc2InfoByInstanceName(name)
+//
+//        if (ec2InfoByInstanceName.isEmpty()) {
+//            return FulfillmentResponse("There is no Ec2 instances which has name: $name")
+//        }
+//        val ec2Ids = ec2InfoByInstanceName.map { it.id }
+//        ec2Service.stopEc2Instance(*ec2Ids.toTypedArray())
+        ec2Service.stopEc2Instance(ec2Id)
+
+        return FulfillmentResponse("Stopping $ec2Id")
     }
 }
