@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service
 import java.time.ZonedDateTime
 
 @Service
-class FulfillmentRequestService(val objectMapper: ObjectMapper) {
+class FulfillmentRequestParser(val objectMapper: ObjectMapper) {
 
     fun parse(requestBody: String): FulfillmentRequest {
         val jsonNode = objectMapper.readTree(requestBody)

@@ -58,27 +58,13 @@ package:
   artifact: build/distributions/cloud-bot-lamda-1.0.zip
 
 functions:
-  overview:
-    handler: com.uitnetwork.bot.handler.Ec2StateOverviewHandler
-    events:
-      - http:
-          path: ec2-overview
-          method: GET
-          private: true
-  start:
-      handler: com.uitnetwork.bot.handler.Ec2StartRequestHandler
+  cloud-bot:
+      handler: com.uitnetwork.bot.handler.CloudBotRequestHandler
       events:
         - http:
-            path: ec2-start
+            path: cloud-bot
             method: POST
             private: true
-  stop:
-        handler: com.uitnetwork.bot.handler.Ec2StopRequestHandler
-        events:
-          - http:
-              path: ec2-stop
-              method: POST
-              private: true
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
