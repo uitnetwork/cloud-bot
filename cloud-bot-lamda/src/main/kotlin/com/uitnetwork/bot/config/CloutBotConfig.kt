@@ -4,5 +4,5 @@ import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 
 @Configuration
-@ComponentScan("com.uitnetwork.bot")
+@ComponentScan(value = ["com.uitnetwork.bot.config", "com.uitnetwork.bot.service"], lazyInit = true)
 class CloutBotConfig
