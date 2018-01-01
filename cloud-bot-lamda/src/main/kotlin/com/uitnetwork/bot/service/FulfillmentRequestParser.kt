@@ -7,11 +7,15 @@ import com.uitnetwork.bot.model.FulfillmentRequest
 import com.uitnetwork.bot.model.Source
 import com.uitnetwork.bot.model.Source.SKYPE
 import com.uitnetwork.bot.model.Source.SLACK
+import mu.KotlinLogging
 import org.springframework.stereotype.Service
 import java.time.ZonedDateTime
 
 @Service
 class FulfillmentRequestParser(val objectMapper: ObjectMapper) {
+    companion object {
+        private val logger = KotlinLogging.logger { }
+    }
 
     fun parse(requestBody: String): FulfillmentRequest {
         val jsonNode = objectMapper.readTree(requestBody)

@@ -6,15 +6,15 @@ import com.uitnetwork.bot.model.ApiGatewayResponse
 import com.uitnetwork.bot.model.ApiGatewayResponse.Companion.fromFulfillmentResponse
 import com.uitnetwork.bot.service.FulfillmentRequestParser
 import com.uitnetwork.bot.service.RequestServiceManager
-import org.apache.logging.log4j.LogManager
+import mu.KotlinLogging
 
 class CloudBotRequestHandler : AbstractSpringAwareHandler<CloutBotConfig>() {
     companion object {
-        private val logger = LogManager.getLogger(CloudBotRequestHandler::class.java)
+        private val logger = KotlinLogging.logger { }
     }
 
     override fun handleRequest(input: Map<String, Any>, context: Context): ApiGatewayResponse {
-        logger.info("Received: ${input["body"]}")
+        logger.debug { "Received: ${input["body"]}" }
 
         val fulfillmentRequestService = applicationContext.getBean(FulfillmentRequestParser::class.java)
         val fulfillmentRequest = fulfillmentRequestService.parse(input["body"] as String)
