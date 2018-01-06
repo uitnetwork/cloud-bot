@@ -12,6 +12,13 @@ class Ec2Service(private val amazonEc2: AmazonEC2) {
         private val logger = KotlinLogging.logger { }
     }
 
+    fun getEc2Overview(): String {
+        val allEc2Info = getAllEc2Info()
+        val stringBuilder = StringBuilder("Ec2 Overview\n")
+        allEc2Info.forEach { stringBuilder.append(it.toString()).append("\n") }
+        return stringBuilder.toString()
+    }
+
     fun getAllEc2Info(): List<Ec2Info> {
         return getAllEc2InfoMatchedRequest(DescribeInstancesRequest())
     }

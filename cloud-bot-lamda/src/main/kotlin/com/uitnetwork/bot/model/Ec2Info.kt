@@ -6,3 +6,4 @@ data class Ec2Info(
         val type: String,
         val state: String
 )
+

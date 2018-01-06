@@ -63,6 +63,7 @@ dependencies {
     compile "io.github.microutils:kotlin-logging:1.4.9"
     compile "org.apache.logging.log4j:log4j-slf4j-impl:2.8.2"
 //    compile 'com.google.cloud:google-cloud-dialogflow:0.32.0-alpha'
+    compile 'com.google.apis:google-api-services-compute:v1-rev165-1.23.0'
 
     testCompile "org.springframework.boot:spring-boot-starter-test:1.5.9.RELEASE"
     testCompile "commons-io:commons-io:2.6"
