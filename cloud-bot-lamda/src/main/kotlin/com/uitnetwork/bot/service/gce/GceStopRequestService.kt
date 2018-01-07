@@ -29,7 +29,7 @@ class GceStopRequestService(private val gceService: GceService,
             return FulfillmentResponse("Please specify the name of the GCE instance.")
         }
 
-        gceService.stopComputeInstance(gceName)
+        gceService.stopGceInstance(gceName)
 
         return FulfillmentResponse("Stopping GCE: $gceName")
     }

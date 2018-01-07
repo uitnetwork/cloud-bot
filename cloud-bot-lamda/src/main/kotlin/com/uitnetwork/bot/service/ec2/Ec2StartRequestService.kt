@@ -14,6 +14,7 @@ class Ec2StartRequestService(private val ec2Service: Ec2Service, private val per
 
         const val ACTION_EC2_START = "EC2_START"
         const val PARAM_EC2_ID = "ec2Id"
+        const val PARAM_EC2_NAME = "ec2Name"
     }
 
     override fun getProcessableActionName(): String {
@@ -22,13 +23,30 @@ class Ec2StartRequestService(private val ec2Service: Ec2Service, private val per
 
     override fun doProcess(fulfillmentRequest: FulfillmentRequest): FulfillmentResponse {
         val ec2Id = fulfillmentRequest.params[PARAM_EC2_ID]
-        logger.info { "Starting $ec2Id" }
-        if (ec2Id == null) {
-            return FulfillmentResponse("Please specify the id of the EC2 instance.")
+        val ec2Name = fulfillmentRequest.params[PARAM_EC2_NAME]
+
+        logger.info { "Starting ec2Id: $ec2Id or ec2Name: $ec2Name" }
+
+        return when {
+            ec2Id != null -> startEc2InstanceById(ec2Id)
+            ec2Name != null -> startEc2InstanceByName(ec2Name)
+            else -> FulfillmentResponse("Please specify the name or id of the EC2 instance.")
+        }
+    }
+
+    private fun startEc2InstanceById(ec2Id: String): FulfillmentResponse {
+        ec2Service.startEc2Instance(ec2Id)
+        return FulfillmentResponse("Starting EC2: $ec2Id")
+    }
+
+    private fun startEc2InstanceByName(ec2Name: String): FulfillmentResponse {
+        val ec2InstanceByInstanceName = ec2Service.getEc2InstancesByInstanceName(ec2Name)
+        if (ec2InstanceByInstanceName.isEmpty()) {
+            return FulfillmentResponse("There is no EC2 instances with name: $ec2Name")
         }
 
-        ec2Service.startEc2Instance(ec2Id)
-
-        return FulfillmentResponse("Starting EC2: $ec2Id")
+        val ec2Ids = ec2InstanceByInstanceName.map { it.id }.toTypedArray()
+        ec2Service.startEc2Instance(*ec2Ids)
+        return FulfillmentResponse("Starting EC2: $ec2Ids")
     }
 }

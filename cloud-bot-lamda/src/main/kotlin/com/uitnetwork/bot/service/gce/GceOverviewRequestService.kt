@@ -21,6 +21,6 @@ class GceOverviewRequestService(private val gceService: GceService,
     }
 
     override fun doProcess(fulfillmentRequest: FulfillmentRequest): FulfillmentResponse {
-        return FulfillmentResponse(gceService.getComputeOverview())
+        return FulfillmentResponse(gceService.getGceOverview())
     }
 }

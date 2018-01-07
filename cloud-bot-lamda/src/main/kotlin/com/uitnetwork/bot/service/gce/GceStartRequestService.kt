@@ -28,7 +28,7 @@ class GceStartRequestService(private val gceService: GceService,
             return FulfillmentResponse("Please specify the name of the GCE instance.")
         }
 
-        gceService.startComputeInstance(gceName)
+        gceService.startGceInstance(gceName)
 
         return FulfillmentResponse("Starting GCE: $gceName")
     }

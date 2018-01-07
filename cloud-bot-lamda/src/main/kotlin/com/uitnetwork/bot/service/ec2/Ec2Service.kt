@@ -22,7 +22,7 @@ class Ec2Service(private val amazonEc2: AmazonEC2) {
         return getAllEc2InstancesMatchedRequest(DescribeInstancesRequest())
     }
 
-    fun getEc2InstanceByInstanceName(instanceName: String): List<Ec2Instance> {
+    fun getEc2InstancesByInstanceName(instanceName: String): List<Ec2Instance> {
         val describeInstancesRequest = DescribeInstancesRequest().withFilters(Filter("tag:Name", listOf(instanceName)))
         return getAllEc2InstancesMatchedRequest(describeInstancesRequest)
     }

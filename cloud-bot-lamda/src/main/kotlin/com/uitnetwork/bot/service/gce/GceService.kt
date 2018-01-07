@@ -12,7 +12,7 @@ class GceService(private val compute: Compute) {
         const val ZONE = "asia-southeast1-a"
     }
 
-    fun getComputeOverview(): String {
+    fun getGceOverview(): String {
 
         val allGceInstances = getAllGceInstancesInProjectAndZone(PROJECT_ID, ZONE)
 
@@ -42,12 +42,12 @@ class GceService(private val compute: Compute) {
                 status = instance.status)
     }
 
-    fun startComputeInstance(instanceName: String) {
+    fun startGceInstance(instanceName: String) {
         val computeInstancesStartRequest = compute.instances().start(PROJECT_ID, ZONE, instanceName)
         computeInstancesStartRequest.execute()
     }
 
-    fun stopComputeInstance(instanceName: String) {
+    fun stopGceInstance(instanceName: String) {
         val computeInstancesStopRequest = compute.instances().stop(PROJECT_ID, ZONE, instanceName)
         computeInstancesStopRequest.execute()
     }
