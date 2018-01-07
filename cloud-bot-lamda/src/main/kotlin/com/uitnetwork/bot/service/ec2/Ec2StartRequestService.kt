@@ -28,8 +28,8 @@ class Ec2StartRequestService(private val ec2Service: Ec2Service, private val per
         logger.info { "Starting ec2Id: $ec2Id or ec2Name: $ec2Name" }
 
         return when {
-            ec2Id != null -> startEc2InstanceById(ec2Id)
-            ec2Name != null -> startEc2InstanceByName(ec2Name)
+            ec2Id != null && ec2Id.isNotBlank() -> startEc2InstanceById(ec2Id)
+            ec2Name != null && ec2Name.isNotBlank() -> startEc2InstanceByName(ec2Name)
             else -> FulfillmentResponse("Please specify the name or id of the EC2 instance.")
         }
     }
@@ -47,6 +47,6 @@ class Ec2StartRequestService(private val ec2Service: Ec2Service, private val per
 
         val ec2Ids = ec2InstanceByInstanceName.map { it.id }.toTypedArray()
         ec2Service.startEc2Instance(*ec2Ids)
-        return FulfillmentResponse("Starting EC2: $ec2Ids")
+        return FulfillmentResponse("Starting EC2: ${ec2Ids.joinToString(separator = ",")}")
     }
 }
