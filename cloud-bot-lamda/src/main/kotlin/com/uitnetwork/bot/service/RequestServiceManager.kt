@@ -10,7 +10,7 @@ class RequestServiceManager(private val requestServices: List<AbstractRequestSer
 
     fun process(fulfillmentRequest: FulfillmentRequest): FulfillmentResponse {
         val requestService = requestServiceMap[fulfillmentRequest.action.toUpperCase()]
-                ?: return FulfillmentResponse("Sorry. I can not handle the request with action ${fulfillmentRequest.action}.")
+                ?: return FulfillmentResponse("Sorry. I can not handle the request with action ${fulfillmentRequest.action}")
 
         return requestService.validatePermissionThenProcess(fulfillmentRequest)
     }

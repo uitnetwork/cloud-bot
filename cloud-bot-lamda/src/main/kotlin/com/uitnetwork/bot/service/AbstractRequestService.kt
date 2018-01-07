@@ -13,7 +13,7 @@ abstract class AbstractRequestService(private val permissionService: PermissionS
 
     fun validatePermissionThenProcess(fulfillmentRequest: FulfillmentRequest): FulfillmentResponse {
         if (!permissionService.hasPermissionToExecute(fulfillmentRequest.userId, fulfillmentRequest.source, fulfillmentRequest.action)) {
-            return FulfillmentResponse("Sorry. You don't have permission.")
+            return FulfillmentResponse("Sorry. You don't have permission")
         }
 
         return doProcess(fulfillmentRequest)

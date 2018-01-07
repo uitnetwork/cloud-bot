@@ -24,8 +24,8 @@ class GceStartRequestService(private val gceService: GceService,
     override fun doProcess(fulfillmentRequest: FulfillmentRequest): FulfillmentResponse {
         val gceName = fulfillmentRequest.params[PARAM_GCE_NAME]
         logger.info { "Starting $gceName" }
-        if (gceName == null) {
-            return FulfillmentResponse("Please specify the name of the GCE instance.")
+        if (gceName == null || gceName.isBlank()) {
+            return FulfillmentResponse("Please specify the name of the GCE instance")
         }
 
         gceService.startGceInstance(gceName)
