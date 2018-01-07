@@ -74,7 +74,7 @@ dependencies {
 task buildZip(type: Zip) {
     from compileKotlin
     from processResources
-    from System.getenv('CLOUD_BOT_GOOLD_ACCOUNT_SERVICE_FILE')
+    from "${System.getenv('CLOUD_BOT_GOOLD_ACCOUNT_SERVICE_FILE')}"
     into('lib') {
         from configurations.runtime
     }
