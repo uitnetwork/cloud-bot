@@ -2,10 +2,22 @@ package com.uitnetwork.bot.service
 
 import com.uitnetwork.bot.model.FulfillmentRequest
 import com.uitnetwork.bot.model.FulfillmentResponse
+import mu.KotlinLogging
 
-abstract class AbstractRequestService {
+abstract class AbstractRequestService(private val permissionService: PermissionService) {
+    companion object {
+        private val logger = KotlinLogging.logger { }
+    }
 
-    abstract fun getProcessableAction(): String
+    abstract fun getProcessableActionName(): String
 
-    abstract fun process(fulfillmentRequest: FulfillmentRequest): FulfillmentResponse
+    fun validatePermissionThenProcess(fulfillmentRequest: FulfillmentRequest): FulfillmentResponse {
+        if (!permissionService.hasPermissionToExecute(fulfillmentRequest.userId, fulfillmentRequest.source, fulfillmentRequest.action)) {
+            return FulfillmentResponse("Sorry. You don't have permission.")
+        }
+
+        return doProcess(fulfillmentRequest)
+    }
+
+    abstract fun doProcess(fulfillmentRequest: FulfillmentRequest): FulfillmentResponse
 }

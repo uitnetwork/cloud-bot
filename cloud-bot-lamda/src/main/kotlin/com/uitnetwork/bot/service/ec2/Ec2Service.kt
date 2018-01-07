@@ -1,8 +1,7 @@
-package com.uitnetwork.bot.service
+package com.uitnetwork.bot.service.ec2
 
 import com.amazonaws.services.ec2.AmazonEC2
 import com.amazonaws.services.ec2.model.*
-import com.uitnetwork.bot.model.Ec2Info
 import mu.KotlinLogging
 import org.springframework.stereotype.Service
 
@@ -13,30 +12,30 @@ class Ec2Service(private val amazonEc2: AmazonEC2) {
     }
 
     fun getEc2Overview(): String {
-        val allEc2Info = getAllEc2Info()
+        val allEc2Instances = getAllEc2Instances()
         val stringBuilder = StringBuilder("Ec2 Overview\n")
-        allEc2Info.forEach { stringBuilder.append(it.toString()).append("\n") }
+        allEc2Instances.forEach { stringBuilder.append("$it\n") }
         return stringBuilder.toString()
     }
 
-    fun getAllEc2Info(): List<Ec2Info> {
-        return getAllEc2InfoMatchedRequest(DescribeInstancesRequest())
+    fun getAllEc2Instances(): List<Ec2Instance> {
+        return getAllEc2InstancesMatchedRequest(DescribeInstancesRequest())
     }
 
-    fun getEc2InfoByInstanceName(instanceName: String): List<Ec2Info> {
+    fun getEc2InstanceByInstanceName(instanceName: String): List<Ec2Instance> {
         val describeInstancesRequest = DescribeInstancesRequest().withFilters(Filter("tag:Name", listOf(instanceName)))
-        return getAllEc2InfoMatchedRequest(describeInstancesRequest)
+        return getAllEc2InstancesMatchedRequest(describeInstancesRequest)
     }
 
-    private fun getAllEc2InfoMatchedRequest(describeInstancesRequest: DescribeInstancesRequest): List<Ec2Info> {
+    private fun getAllEc2InstancesMatchedRequest(describeInstancesRequest: DescribeInstancesRequest): List<Ec2Instance> {
         var done = false
-        val result = mutableListOf<Ec2Info>()
+        val result = mutableListOf<Ec2Instance>()
         while (!done) {
             val describeInstancesResult = amazonEc2.describeInstances(describeInstancesRequest)
 
             for (reservation in describeInstancesResult.reservations) {
                 for (instance in reservation.instances) {
-                    result.add(mapToEc2Info(instance))
+                    result.add(mapToEc2Instance(instance))
                 }
             }
 
@@ -49,9 +48,9 @@ class Ec2Service(private val amazonEc2: AmazonEC2) {
         return result.toList()
     }
 
-    private fun mapToEc2Info(instance: Instance): Ec2Info {
+    private fun mapToEc2Instance(instance: Instance): Ec2Instance {
         logger.debug { "Instance: $instance" }
-        return Ec2Info(
+        return Ec2Instance(
                 id = instance.instanceId,
                 name = instance.tags.filter { it.key == "Name" }.firstOrNull()?.value ?: "NO_NAME",
                 type = instance.instanceType,
@@ -73,3 +72,11 @@ class Ec2Service(private val amazonEc2: AmazonEC2) {
         logger.info { "Stopping instances: $instanceId with result: $stopInstancesResult" }
     }
 }
+
+data class Ec2Instance(
+        val id: String,
+        val name: String,
+        val type: String,
+        val state: String
+)
+

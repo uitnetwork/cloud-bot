@@ -6,11 +6,12 @@ import org.springframework.stereotype.Service
 
 @Service
 class RequestServiceManager(private val requestServices: List<AbstractRequestService>) {
-    private val requestServiceMap: Map<String, AbstractRequestService> = requestServices.map { it.getProcessableAction() to it }.toMap()
+    private val requestServiceMap: Map<String, AbstractRequestService> = requestServices.map { it.getProcessableActionName() to it }.toMap()
 
     fun process(fulfillmentRequest: FulfillmentRequest): FulfillmentResponse {
-        val requestService = requestServiceMap[fulfillmentRequest.action.toUpperCase()] ?: return FulfillmentResponse("Sorry. I can not handle the request.")
+        val requestService = requestServiceMap[fulfillmentRequest.action.toUpperCase()]
+                ?: return FulfillmentResponse("Sorry. I can not handle the request with action ${fulfillmentRequest.action}.")
 
-        return requestService.process(fulfillmentRequest)
+        return requestService.validatePermissionThenProcess(fulfillmentRequest)
     }
 }

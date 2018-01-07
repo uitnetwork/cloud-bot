@@ -1,35 +1,32 @@
-package com.uitnetwork.bot.service
+package com.uitnetwork.bot.service.ec2
 
 import com.uitnetwork.bot.model.FulfillmentRequest
 import com.uitnetwork.bot.model.FulfillmentResponse
+import com.uitnetwork.bot.service.AbstractRequestService
+import com.uitnetwork.bot.service.PermissionService
+import com.uitnetwork.bot.service.ec2.Ec2StartRequestService.Companion.PARAM_EC2_ID
 import mu.KotlinLogging
 import org.springframework.stereotype.Service
 
 
 @Service
-class Ec2StopRequestService(val ec2Service: Ec2Service, val permissionService: PermissionService) : AbstractRequestService() {
+class Ec2StopRequestService(private val ec2Service: Ec2Service, private val permissionService: PermissionService) : AbstractRequestService(permissionService) {
     companion object {
         private val logger = KotlinLogging.logger { }
 
         const val ACTION_EC2_STOP = "EC2_STOP"
-        const val PARAM_EC2_ID = "ec2Id"
     }
 
-    override fun getProcessableAction(): String {
+    override fun getProcessableActionName(): String {
         return ACTION_EC2_STOP
     }
 
-    override fun process(fulfillmentRequest: FulfillmentRequest): FulfillmentResponse {
-
-        if (!permissionService.hasPermissionToExecute(fulfillmentRequest.userId, fulfillmentRequest.source, fulfillmentRequest.action)) {
-            logger.info { "Sorry. You don't have permission." }
-            return FulfillmentResponse("Sorry. You don't have permission.")
-        }
+    override fun doProcess(fulfillmentRequest: FulfillmentRequest): FulfillmentResponse {
 
         val ec2Id = fulfillmentRequest.params[PARAM_EC2_ID]
         logger.info { "Stopping $ec2Id" }
         if (ec2Id == null) {
-            return FulfillmentResponse("Please specify the id of the instance.")
+            return FulfillmentResponse("Please specify the id of the EC2 instance.")
         }
 
 //        val name = "test123"
@@ -43,6 +40,6 @@ class Ec2StopRequestService(val ec2Service: Ec2Service, val permissionService: P
 //        ec2Service.stopEc2Instance(*ec2Ids.toTypedArray())
         ec2Service.stopEc2Instance(ec2Id)
 
-        return FulfillmentResponse("Stopping $ec2Id")
+        return FulfillmentResponse("Stopping EC2: $ec2Id")
     }
 }

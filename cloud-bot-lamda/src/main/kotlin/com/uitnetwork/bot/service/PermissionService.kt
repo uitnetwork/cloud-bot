@@ -2,6 +2,7 @@ package com.uitnetwork.bot.service
 
 import com.uitnetwork.bot.model.Source
 import com.uitnetwork.bot.model.Source.SLACK
+import com.uitnetwork.bot.service.gce.GceOverviewRequestService.Companion.ACTION_GCE_OVERVIEW
 import org.springframework.stereotype.Service
 
 @Service
@@ -12,7 +13,7 @@ class PermissionService {
     }
 
     fun hasPermissionToExecute(userId: String, source: Source, action: String): Boolean {
-        if (action == ACTION_EC2_OVERVIEW) {
+        if (action == ACTION_EC2_OVERVIEW || action == ACTION_GCE_OVERVIEW) {
             return true
         }
 

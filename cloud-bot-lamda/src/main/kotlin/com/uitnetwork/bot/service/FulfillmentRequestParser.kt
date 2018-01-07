@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service
 import java.time.ZonedDateTime
 
 @Service
-class FulfillmentRequestParser(val objectMapper: ObjectMapper) {
+class FulfillmentRequestParser(private val objectMapper: ObjectMapper) {
     companion object {
         private val logger = KotlinLogging.logger { }
     }
