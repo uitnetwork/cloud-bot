@@ -31,7 +31,7 @@ class Ec2StopRequestService(private val ec2Service: Ec2Service, private val perm
         return when {
             ec2Id != null && ec2Id.isNotBlank() -> stopEc2InstanceById(ec2Id)
             ec2Name != null && ec2Name.isNotBlank() -> stopEc2InstanceByName(ec2Name)
-            else -> FulfillmentResponse("Please specify the name or id of the EC2 instance.")
+            else -> FulfillmentResponse("Please specify the name or id of the EC2 instance")
         }
     }
 
@@ -48,6 +48,6 @@ class Ec2StopRequestService(private val ec2Service: Ec2Service, private val perm
 
         val ec2Ids = ec2InstanceByInstanceName.map { it.id }.toTypedArray()
         ec2Service.stopEc2Instance(*ec2Ids)
-        return FulfillmentResponse("Stopping EC2: ${ec2Ids.joinToString(separator = ",")}")
+        return FulfillmentResponse("Stopping EC2: ${ec2Ids.joinToString(separator = ", ")}")
     }
 }

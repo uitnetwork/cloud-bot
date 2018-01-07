@@ -66,6 +66,7 @@ dependencies {
     compile 'com.google.apis:google-api-services-compute:v1-rev165-1.23.0'
 
     testCompile "org.springframework.boot:spring-boot-starter-test:1.5.9.RELEASE"
+    testCompile "com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-alpha02"
     testCompile "commons-io:commons-io:2.6"
 
 }
