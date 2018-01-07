@@ -24,3 +24,5 @@ dist/
 nbdist/
 .nb-gradle/
 /**/out
+gce-cloud-bot.json
+cloud-bot-lamda.yml

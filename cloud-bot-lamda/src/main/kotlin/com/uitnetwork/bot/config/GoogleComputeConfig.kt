@@ -8,14 +8,24 @@ import com.google.api.services.compute.ComputeScopes.COMPUTE
 import mu.KotlinLogging
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.core.env.Environment
+import org.springframework.core.env.get
 
 
 @Configuration
-class GoogleComputeConfig {
+class GoogleComputeConfig(private val env: Environment) {
     companion object {
         private val logger = KotlinLogging.logger { }
-        const val GCE_CLOUD_BOT = "gce-cloud-bot.json"
-        const val APP_NAME = "cloud-bot-lamda"
+        const val GCP_SERVICE_KEY_FILENAME = "GCP_SERVICE_KEY_FILENAME"
+        const val GCP_APP_NAME = "GCP_APP_NAME"
+    }
+
+    private val gcpServiceKeyFilename: String by lazy {
+        env[GCP_SERVICE_KEY_FILENAME]
+    }
+
+    private val gcpAppName: String by lazy {
+        env[GCP_APP_NAME]
     }
 
     @Bean
@@ -23,7 +33,7 @@ class GoogleComputeConfig {
         logger.debug { "Creating Compute to access GCP Compute Engine API." }
 
         val netHttpTransport = newTrustedTransport()
-        val gceCloutBotJsonInputstream = javaClass.classLoader.getResourceAsStream(GCE_CLOUD_BOT)
+        val gceCloutBotJsonInputstream = javaClass.classLoader.getResourceAsStream(gcpServiceKeyFilename)
         gceCloutBotJsonInputstream.use {
             var googleCredential = fromStream(gceCloutBotJsonInputstream)
             if (googleCredential.createScopedRequired()) {
@@ -31,7 +41,7 @@ class GoogleComputeConfig {
             }
 
             val compute = Compute.Builder(netHttpTransport, JacksonFactory.getDefaultInstance(), googleCredential)
-                    .setApplicationName(APP_NAME)
+                    .setApplicationName(gcpAppName)
                     .build()
 
             return compute

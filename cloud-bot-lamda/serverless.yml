@@ -17,6 +17,8 @@ service: cloud-bot-lamda
 # Check out our docs for more details
 # frameworkVersion: "=X.X.X"
 
+custom: ${file(./cloud-bot-lamda.yml)}
+
 provider:
   name: aws
   runtime: java8
@@ -65,6 +67,11 @@ functions:
             path: cloud-bot
             method: POST
             private: true
+      environment:
+        GCP_SERVICE_KEY_FILENAME: ${self:custom.gcp.serviceKeyFilename}
+        GCP_APP_NAME: ${self:custom.gcp.appName}
+        GCP_PROJECT_ID: ${self:custom.gcp.projectId}
+        GCP_GCE_ZONE: ${self:custom.gcp.gceZone}
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
