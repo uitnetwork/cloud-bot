@@ -1,5 +1,8 @@
+aws:
+  iamRole: An IAM arn role which has permission to list/stop/start EC2 instances and to CloudWatch logs permission
+
 gcp:
-  serviceKeyFilename: <service key filename>
-  appName: <app name>
-  projectId: <google project id>
-  gceZone: <gce zone>
+  serviceKeyFilename: A Google Cloud Platform service key which has permission to list/start/stop GCE instances
+  appName: A name to be used in GCP GCE API
+  projectId: A Google Cloud Platform Project
+  gceZone: Zone for Google Compute Engine
