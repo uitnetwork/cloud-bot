@@ -1,3 +1,5 @@
 amazon:
   dynamodb:
-    endpoint:
+    region: ap-southeast-1
+    endpoint: https://dynamodb.ap-southeast-1.amazonaws.com
+#    endpoint: http://127.0.0.1:8000

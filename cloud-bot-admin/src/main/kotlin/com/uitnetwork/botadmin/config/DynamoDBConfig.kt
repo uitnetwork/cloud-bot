@@ -9,6 +9,7 @@ import com.amazonaws.services.dynamodbv2.util.TableUtils.createTableIfNotExists
 import com.uitnetwork.botadmin.model.CloudBotPermission
 import mu.KotlinLogging
 import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRepositories
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import javax.annotation.PostConstruct
@@ -16,7 +17,8 @@ import javax.annotation.PostConstruct
 @Configuration
 @EnableDynamoDBRepositories(basePackages = ["com.uitnetwork.botadmin.repository"])
 class DynamoDBConfig(
-//        @Value("amazon.dynamodb.endpoint") private val amazoneDynamoDbEndpoint: String
+        @Value("\${amazon.dynamodb.endpoint}") private val amazoneDynamoDbEndpoint: String,
+        @Value("\${amazon.dynamodb.region}") private val amazoneDynamoDbRegion: String
 ) {
     companion object {
         private val logger = KotlinLogging.logger { }
@@ -26,7 +28,7 @@ class DynamoDBConfig(
 
     @PostConstruct
     fun createTablesIfNotExist() {
-        logger.debug { "Creating DynamoDB tables if not exist" }
+        logger.info { "Creating DynamoDB tables if not exist to endpoint: $amazoneDynamoDbEndpoint and region: $amazoneDynamoDbRegion" }
 
         val dynamoDBMapper = DynamoDBMapper(amazonDynamoDB())
         val createTableRequest = dynamoDBMapper.generateCreateTableRequest(CloudBotPermission::class.java)
@@ -40,7 +42,7 @@ class DynamoDBConfig(
         val amazonDynamoDBClientBuilder = AmazonDynamoDBClientBuilder
                 .standard()
         amazonDynamoDBClientBuilder
-                .setEndpointConfiguration(AwsClientBuilder.EndpointConfiguration("http://127.0.0.1:8000", "ap-southeast-1"))
+                .setEndpointConfiguration(AwsClientBuilder.EndpointConfiguration(amazoneDynamoDbEndpoint, amazoneDynamoDbRegion))
 
         return amazonDynamoDBClientBuilder.build()
     }
