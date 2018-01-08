@@ -2,13 +2,13 @@ package com.uitnetwork.bot.service
 
 import com.uitnetwork.bot.model.Source
 import com.uitnetwork.bot.model.Source.SLACK
+import com.uitnetwork.bot.service.ec2.Ec2OverviewRequestService.Companion.ACTION_EC2_OVERVIEW
 import com.uitnetwork.bot.service.gce.GceOverviewRequestService.Companion.ACTION_GCE_OVERVIEW
 import org.springframework.stereotype.Service
 
 @Service
 class PermissionService {
     companion object {
-        const val ACTION_EC2_OVERVIEW = "EC2_OVERVIEW"
         const val HARDCODE_SLACK_USER = "U0T96K5Q9"
     }
 
