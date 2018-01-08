@@ -73,6 +73,8 @@ functions:
         GCP_APP_NAME: ${self:custom.gcp.appName}
         GCP_PROJECT_ID: ${self:custom.gcp.projectId}
         GCP_GCE_ZONE: ${self:custom.gcp.gceZone}
+        AWS_DYNAMODB_ENDPOINT: ${self:custom.aws.dynamodb.endpoint}
+        AWS_DYNAMODB_REGION: ${self:custom.aws.dynamodb.region}
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

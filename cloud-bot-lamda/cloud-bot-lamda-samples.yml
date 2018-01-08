@@ -1,6 +1,8 @@
 aws:
   iamRole: An IAM arn role which has permission to list/stop/start EC2 instances and to CloudWatch logs permission
-
+  dynamodb:
+      endpoint: Dynamodb endpoint
+      region: Dynamodb region
 gcp:
   serviceKeyFilename: A Google Cloud Platform service key which has permission to list/start/stop GCE instances
   appName: A name to be used in GCP GCE API
