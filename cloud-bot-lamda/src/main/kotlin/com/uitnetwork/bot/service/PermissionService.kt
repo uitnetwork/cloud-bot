@@ -26,7 +26,11 @@ class PermissionService(private val dynamoDBMapper: DynamoDBMapper) {
         }
 
         val dynamoDBQueryExpression = DynamoDBQueryExpression<CloudBotPermission>()
-                .withKeyConditionExpression("source = :source AND userId = :userId")
+                .withKeyConditionExpression("#source = :source AND #userId = :userId")
+                .withExpressionAttributeNames(mapOf(
+                        "#source" to "source",
+                        "#userId" to "userId"
+                ))
                 .withExpressionAttributeValues(mapOf(
                         ":source" to AttributeValue().withS(source.name),
                         ":userId" to AttributeValue().withS(userId)

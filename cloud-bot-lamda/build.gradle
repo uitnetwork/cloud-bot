@@ -23,13 +23,19 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
         classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-noarg:${kotlinVersion}")
         classpath "io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE"
     }
 }
 
 apply plugin: 'kotlin'
 apply plugin: 'kotlin-spring'
+apply plugin: "kotlin-noarg"
 apply plugin: "io.spring.dependency-management"
+
+noArg {
+    annotation("com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable")
+}
 
 repositories {
     maven { url "http://repo.maven.apache.org/maven2" }
