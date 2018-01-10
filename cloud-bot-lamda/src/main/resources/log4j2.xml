@@ -3,7 +3,8 @@
     <Appenders>
         <Lambda name="Lambda">
             <PatternLayout>
-                <pattern>%d{yyyy-MM-dd HH:mm:ss} %X{AWSRequestId} %-5p %c{1}:%L - %m%n</pattern>
+                <alwaysWriteExceptions>false</alwaysWriteExceptions>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss} %X{AWSRequestId} %-5p %c{1}:%L - %m %throwable{separator(\r)} %n</pattern>
             </PatternLayout>
         </Lambda>
     </Appenders>
