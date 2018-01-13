@@ -1,0 +1,48 @@
+{
+  "id": "7aee8c7b-fe5d-4470-b2f3-cc1493a24dc3",
+  "name": "ec2 start",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "EC2_START",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "54e0ce48-fd26-46f5-983e-a993cda01393",
+          "required": false,
+          "dataType": "@ec2Id",
+          "name": "ec2Id",
+          "value": "$ec2Id",
+          "isList": false
+        },
+        {
+          "id": "5c61ed44-e45c-4736-8171-ed202b317e3b",
+          "dataType": "@ec2Name",
+          "name": "ec2Name",
+          "value": "$ec2Name",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": [
+            "It takes long time processing your request. Can you check the status after a few seconds?",
+            "It takes quite a while processing your request. Can you query the status after a few seconds?"
+          ]
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1514304444,
+  "fallbackIntent": false,
+  "events": []
+}

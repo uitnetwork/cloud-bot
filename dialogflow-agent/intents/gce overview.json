@@ -1,0 +1,32 @@
+{
+  "id": "37bfac27-138b-427c-80a2-3ce11c6eb4c2",
+  "name": "gce overview",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "GCE_OVERVIEW",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": [
+            "It takes long time processing your request. Can you check the status after a few seconds?",
+            "It takes quite a while processing your request. Can you query the status after a few seconds?"
+          ]
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1515253072,
+  "fallbackIntent": false,
+  "events": []
+}

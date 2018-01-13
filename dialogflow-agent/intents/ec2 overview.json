@@ -1,0 +1,32 @@
+{
+  "id": "0d55b8f1-bb9c-41f2-ac03-a9e5327e6127",
+  "name": "ec2 overview",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "EC2_OVERVIEW",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": [
+            "It takes long time processing your request. Can you check the status after a few seconds?",
+            "It takes quite a while processing your request. Can you query the status after a few seconds?"
+          ]
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1514303035,
+  "fallbackIntent": false,
+  "events": []
+}

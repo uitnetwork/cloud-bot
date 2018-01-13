@@ -1,0 +1,20 @@
+[
+  {
+    "value": "test-cos",
+    "synonyms": [
+      "test-cos"
+    ]
+  },
+  {
+    "value": "test-from-gcloud",
+    "synonyms": [
+      "test-from-gcloud"
+    ]
+  },
+  {
+    "value": "test-ubuntu",
+    "synonyms": [
+      "test-ubuntu"
+    ]
+  }
+]

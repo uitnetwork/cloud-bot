@@ -1,0 +1,40 @@
+{
+  "id": "e2f3ab85-6dd1-42b4-a3b4-ea059e8c25a2",
+  "name": "gce stop",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "GCE_STOP",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "cffa113f-d457-4919-afb1-a0f5a2ce98ba",
+          "dataType": "@gceName",
+          "name": "gceName",
+          "value": "$gceName",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": [
+            "It takes long time processing your request. Can you check the status after a few seconds?",
+            "It takes quite a while processing your request. Can you query the status after a few seconds?"
+          ]
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1515295305,
+  "fallbackIntent": false,
+  "events": []
+}

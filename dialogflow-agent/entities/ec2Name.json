@@ -1,0 +1,7 @@
+{
+  "id": "c7bde750-13a8-4779-828e-a054bd3f3e8b",
+  "name": "ec2Name",
+  "isOverridable": true,
+  "isEnum": true,
+  "automatedExpansion": false
+}
