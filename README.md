@@ -6,6 +6,9 @@ Cloud bot contains 3 main parts:
 * **Cloud bot admin**: This is a Spring application which is used to manage the permissions of individuals who are using the chatbot. Those permissions will be validated by cloud bot lamda before it makes the execution.
 * **Dialogflow agent**: This is an agent in [Dialog](https://console.dialogflow.com) which allows us to communicate with the chatbot (Slack, Skype...) using natural language. Based on that, it will then make the fulfillment request to the fullfillment webhook which was the API gateway link of the cloud bot lamda
 
+![Alt text](design/cloud-bot.png?raw=true "Cloud bot design")
+
+
 # Deployment
 
 1. Deploy [cloud-bot-lamda](cloud-bot-lamda)
