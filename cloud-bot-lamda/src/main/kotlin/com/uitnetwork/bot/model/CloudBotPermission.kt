@@ -15,7 +15,7 @@ data class CloudBotPermission(
         var source: String,
 
         @DynamoDBAttribute
-        var permissions: List<String>
+        var permissions: List<String> = emptyList()
 )
 
 
