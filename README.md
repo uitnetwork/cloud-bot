@@ -10,7 +10,7 @@ Cloud bot contains 3 main parts:
 
 1. Deploy [cloud-bot-lamda](cloud-bot-lamda)
 2. Deploy [cloud-bot-admin](cloud-bot-admin)
-3. Deploy [dialogflow-agent](dialogflow-agent)
+3. Deploy [cloud-bot-agent](cloud-bot-agent)
 
 # Examples:
 
