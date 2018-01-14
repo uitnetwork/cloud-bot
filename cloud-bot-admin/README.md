@@ -11,7 +11,7 @@
 * `java -jar build/libs/cloud-bot-admin-1.0.jar`
 
 ## Cloud bot configuration examples
-* Create a cloud-bot-permission for Slack user with id `U0T96K5Q9` with all permissions by post following request to /api/cloud-bot-permission
+* Create a cloud-bot-permission for Slack user with id `U0T96K5Q9` with all permissions by post following request to `/api/cloud-bot-permissions`
 
 ```
 {

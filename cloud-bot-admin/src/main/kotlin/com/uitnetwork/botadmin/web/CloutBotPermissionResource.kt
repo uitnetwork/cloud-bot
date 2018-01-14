@@ -7,7 +7,7 @@ import mu.KotlinLogging
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api/cloud-bot-permission")
+@RequestMapping("/api/cloud-bot-permissions")
 class CloutBotPermissionResource(private val cloudBotPermissionRepository: CloudBotPermissionRepository) {
     companion object {
         private val logger = KotlinLogging.logger { }
