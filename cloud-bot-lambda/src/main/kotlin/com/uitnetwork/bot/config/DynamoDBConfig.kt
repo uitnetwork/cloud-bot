@@ -16,11 +16,11 @@ class DynamoDBConfig(private val env: Environment) {
         const val AWS_DYNAMODB_REGION = "AWS_DYNAMODB_REGION"
     }
 
-    private val amazoneDynamoDbEndpoint: String by lazy {
+    private val amazonDynamoDbEndpoint: String by lazy {
         env[AWS_DYNAMODB_ENDPOINT]
     }
 
-    private val amazoneDynamoDbRegion: String by lazy {
+    private val amazonDynamoDbRegion: String by lazy {
         env[AWS_DYNAMODB_REGION]
     }
 
@@ -29,7 +29,7 @@ class DynamoDBConfig(private val env: Environment) {
         val amazonDynamoDBClientBuilder = AmazonDynamoDBClientBuilder
                 .standard()
         amazonDynamoDBClientBuilder
-                .setEndpointConfiguration(AwsClientBuilder.EndpointConfiguration(amazoneDynamoDbEndpoint, amazoneDynamoDbRegion))
+                .setEndpointConfiguration(AwsClientBuilder.EndpointConfiguration(amazonDynamoDbEndpoint, amazonDynamoDbRegion))
 
         return amazonDynamoDBClientBuilder.build()
     }

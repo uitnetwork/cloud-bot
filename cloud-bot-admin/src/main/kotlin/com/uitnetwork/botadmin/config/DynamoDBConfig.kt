@@ -17,8 +17,8 @@ import javax.annotation.PostConstruct
 @Configuration
 @EnableDynamoDBRepositories(basePackages = ["com.uitnetwork.botadmin.repository"])
 class DynamoDBConfig(
-        @Value("\${amazon.dynamodb.endpoint}") private val amazoneDynamoDbEndpoint: String,
-        @Value("\${amazon.dynamodb.region}") private val amazoneDynamoDbRegion: String
+        @Value("\${amazon.dynamodb.endpoint}") private val amazonDynamoDbEndpoint: String,
+        @Value("\${amazon.dynamodb.region}") private val amazonDynamoDbRegion: String
 ) {
     companion object {
         private val logger = KotlinLogging.logger { }
@@ -28,7 +28,7 @@ class DynamoDBConfig(
 
     @PostConstruct
     fun createTablesIfNotExist() {
-        logger.info { "Creating DynamoDB tables if not exist to endpoint: $amazoneDynamoDbEndpoint and region: $amazoneDynamoDbRegion" }
+        logger.info { "Creating DynamoDB tables if not exist to endpoint: $amazonDynamoDbEndpoint and region: $amazonDynamoDbRegion" }
 
         val dynamoDBMapper = DynamoDBMapper(amazonDynamoDB())
         val createTableRequest = dynamoDBMapper.generateCreateTableRequest(CloudBotPermission::class.java)
@@ -42,7 +42,7 @@ class DynamoDBConfig(
         val amazonDynamoDBClientBuilder = AmazonDynamoDBClientBuilder
                 .standard()
         amazonDynamoDBClientBuilder
-                .setEndpointConfiguration(AwsClientBuilder.EndpointConfiguration(amazoneDynamoDbEndpoint, amazoneDynamoDbRegion))
+                .setEndpointConfiguration(AwsClientBuilder.EndpointConfiguration(amazonDynamoDbEndpoint, amazonDynamoDbRegion))
 
         return amazonDynamoDBClientBuilder.build()
     }
