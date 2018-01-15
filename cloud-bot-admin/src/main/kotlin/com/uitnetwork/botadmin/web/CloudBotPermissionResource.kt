@@ -14,16 +14,13 @@ class CloudBotPermissionResource(private val cloudBotPermissionRepository: Cloud
     }
 
     @GetMapping
-    fun getCloudBotPermissions(): List<CloudBotPermission> {
-        return cloudBotPermissionRepository.findAll().toList()
-    }
+    fun getCloudBotPermissions() = cloudBotPermissionRepository.findAll()
 
     @PostMapping
     fun createCloudBotPermission(@RequestBody cloudBotPermission: CloudBotPermission): CloudBotPermission {
         logger.info { "Creating $cloudBotPermission" }
 
-        val existed = cloudBotPermissionRepository.existsById(cloudBotPermission.id)
-        if (existed) throw CloudBotPermissionException("${cloudBotPermission.id} was already existed")
+        if (cloudBotPermissionRepository.existsById(cloudBotPermission.id)) throw CloudBotPermissionException("${cloudBotPermission.id} was already existed")
 
         return cloudBotPermissionRepository.save(cloudBotPermission)
     }
@@ -32,8 +29,7 @@ class CloudBotPermissionResource(private val cloudBotPermissionRepository: Cloud
     fun updateCloudBotPermission(@RequestBody cloudBotPermission: CloudBotPermission): CloudBotPermission {
         logger.info { "Updating $cloudBotPermission" }
 
-        val existed = cloudBotPermissionRepository.existsById(cloudBotPermission.id)
-        if (!existed) throw CloudBotPermissionException("Resource not found: ${cloudBotPermission.id}")
+        if (!cloudBotPermissionRepository.existsById(cloudBotPermission.id)) throw CloudBotPermissionException("Resource not found: ${cloudBotPermission.id}")
 
         return cloudBotPermissionRepository.save(cloudBotPermission)
     }
