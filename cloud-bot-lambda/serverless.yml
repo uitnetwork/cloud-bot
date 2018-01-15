@@ -11,13 +11,13 @@
 #
 # Happy Coding!
 
-service: cloud-bot-lamda
+service: cloud-bot-lambda
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
 # frameworkVersion: "=X.X.X"
 
-custom: ${file(./cloud-bot-lamda.yml)}
+custom: ${file(./cloud-bot-lambda.yml)}
 
 provider:
   name: aws
@@ -58,7 +58,7 @@ provider:
 
 # you can add packaging information here
 package:
-  artifact: build/distributions/cloud-bot-lamda-1.0.zip
+  artifact: build/distributions/cloud-bot-lambda-1.0.zip
 
 functions:
   cloud-bot:

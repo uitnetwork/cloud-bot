@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 
-description = 'Lamda to handle request from the bot'
+description = 'Lambda to handle request from the bot'
 
 
 sourceCompatibility = 1.8

@@ -2,16 +2,16 @@
 
 Cloud bot is a solution which allows us to start/stop EC2 instances and GCE instances via chatbot.
 Cloud bot contains 3 main parts:
-* **Cloud bot lamda**: This is the fulfillment webhook which will be requested whenever we interact with the chatbot. The lamda will execute the action based on our command.
-* **Cloud bot admin**: This is a Spring application which is used to manage the permissions of individuals who are using the chatbot. Those permissions will be validated by cloud bot lamda before it makes the execution.
-* **Dialogflow agent**: This is an agent in [Dialog](https://console.dialogflow.com) which allows us to communicate with the chatbot (Slack, Skype...) using natural language. Based on that, it will then make the fulfillment request to the fullfillment webhook which was the API gateway link of the cloud bot lamda
+* **Cloud bot lambda**: This is the fulfillment webhook which will be requested whenever we interact with the chatbot. The lambda will execute the action based on our command.
+* **Cloud bot admin**: This is a Spring application which is used to manage the permissions of individuals who are using the chatbot. Those permissions will be validated by cloud bot lambda before it makes the execution.
+* **Dialogflow agent**: This is an agent in [Dialog](https://console.dialogflow.com) which allows us to communicate with the chatbot (Slack, Skype...) using natural language. Based on that, it will then make the fulfillment request to the fullfillment webhook which was the API gateway link of the cloud bot lambda
 
 ![Alt text](design/cloud-bot.png?raw=true "Cloud bot design")
 
 
 # Deployment
 
-1. Deploy [cloud-bot-lamda](cloud-bot-lamda)
+1. Deploy [cloud-bot-lambda](cloud-bot-lambda)
 2. Deploy [cloud-bot-admin](cloud-bot-admin)
 3. Deploy [cloud-bot-agent](cloud-bot-agent)
 

@@ -1,4 +1,4 @@
-# Cloud bot lamda deployment
+# Cloud bot lambda deployment
 
 ## Requirement:
 * [JDK8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) installed 
@@ -8,7 +8,7 @@
 * GCP service key with permission to list/stop/start GCE instances
 
 ## Configuration:
-* Create and configure `cloud-bot-lamda.yml` with the template which is from `cloud-bot-lamda-samples.yml`
+* Create and configure `cloud-bot-lambda.yml` with the template which is from `cloud-bot-lambda-samples.yml`
 * Export the absolute path of GCP service key to CLOUD_BOT_GOOLD_ACCOUNT_SERVICE_FILE environment (`export CLOUD_BOT_GOOLD_ACCOUNT_SERVICE_FILE=/some-path/service-file.json`)
 
 
